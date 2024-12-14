@@ -1,0 +1,23 @@
+name: Deploy to S3
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v2
+        with:
+          aws-access-key-id: ${{ secrets.AKIAU6HBZD3A5VZWDJUE }}
+          aws-secret-access-key: ${{ secrets.yQRnuu784Zo5x548p/RPOqSC/2LyLvu7Gl2kLs2r }}
+          aws-region: us-east-1
+
+      - name: Sync files to S3
+        run: aws s3 sync . s3://my-sales-data-bucket-new --delete
