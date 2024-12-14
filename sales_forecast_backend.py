@@ -4,6 +4,7 @@ from django.shortcuts import render
 from .forms import UploadFileForm
 from statsmodels.tsa.arima.model import ARIMA
 
+
 def forecast_sales(request):
     if request.method == 'POST' and request.FILES['csv_file']:
         data = pd.read_csv(request.FILES['csv_file'])
